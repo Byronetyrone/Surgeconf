@@ -1,0 +1,36 @@
+[MITM]
+hostname = api.revenuecat.com, buy.itunes.apple.com, api.picsart.com, api-account.kinemasters.com, us-central1-alight-creative.cloudfunctions.net, api.adapty.io, carrotweather.herokuapp.com, order.creativeappnow.com, api.mwm-users.com, us-central1-muslim-pro-app.cloudfunctions.net, prod.studysmarter.de, api.qonversion.io, subscription.grammarly.com, api.esound.app, api.purchasely.io, api.sandbox.love, subscriptions.songshift.com, api.adblockpro.app, mobile-api.adguard.org
+
+[Header Rewrite]
+http-response ^https?://api\.revenuecat\.com/.+/(receipts$|subscribers/?(.*?)*$) header-del X-RevenueCat-ETag
+http-response ^https?://api\.revenuecat\.com/.+/(receipts$|subscribers/?(.*?)*$) header-del x-revenuecat-etag
+
+[Scripting]
+script = http-response, "AppRCTesters", "^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$)", "https://apptesters.org/wp-content/uploads/2024/03/Auto_RC.js", body_required=true, update_interval=5
+script = http-response, "AppAdTesters", "https://api.adapty.io/api/v1/sdk/analytics/profiles", "https://apptesters.org/wp-content/uploads/2024/03/Adapty.js", body_required=true, update_interval=5
+script = http-response, "AppFMTesters", "https://order.creativeappnow.com/iap/receipt", "https://apptesters.org/wp-content/uploads/2024/03/Facemoji.js", body_required=true, update_interval=5
+script = http-response, "AppReTesters", "https:\/\/license\.pdfexpert\.com\/api\/2\.0\/(calendarslite|pdfexpert6|documents)\/subscription\/(refresh|check)", "https://apptesters.org/wp-content/uploads/2024/03/readdle.js", body_required=true, update_interval=5
+script = http-response, "AppitTesters", "^https:\/\/buy\.itunes\.apple\.com\/verifyReceipt", "https://apptesters.org/wp-content/uploads/2024/03/iTunes.js", body_required=true, update_interval=5
+script = http-response, "AppMuTesters", "us-central1-muslim-pro-app.cloudfunctions.net/GetUserPremiumInfo", "https://apptesters.org/wp-content/uploads/2024/03/MuslimPro.js", body_required=true, update_interval=5
+script = http-response, "AppGrTesters", "^https?:\/\/subscription\.grammarly\.com\/api\/v1\/subscription$", "https://apptesters.org/wp-content/uploads/2024/03/Grammarly.js", body_required=true, update_interval=5
+script = http-response, "AppeSTesters", "api.esound.app/account", "https://apptesters.org/wp-content/uploads/2024/03/eSound.js", body_required=true, update_interval=5
+script = http-response, "AppPurTesters", "https://api.purchasely.io/paab/user_purchases", "https://apptesters.org/wp-content/uploads/2024/03/purchasely.js", body_required=true, update_interval=5
+script = http-response, "AppVaTesters", "prod.studysmarter.de/payments/info", "https://apptesters.org/wp-content/uploads/2024/03/Vaia.js", body_required=true, update_interval=5
+script = http-response, "AppQOTesters", "api.qonversion.io/v1/user/init", "https://apptesters.org/wp-content/uploads/2024/03/qonversion.js", body_required=true, update_interval=5
+script = http-response, "AppDJTesters", "https://api.mwm-users.com/me/features", "https://apptesters.org/wp-content/uploads/2024/03/edjingMix.js", body_required=true, update_interval=5
+script = http-response, "AppVCTesters", "https://api-fra.vivacut.com/api/rest/commerce/integrate/vip/perform", "https://apptesters.org/wp-content/uploads/2024/03/VivaCut.js", body_required=true, update_interval=5
+script = http-response, "AppCaTesters", "https://carrotweather.herokuapp.com/parse/functions/findSubscriptionsForUserId", "https://apptesters.org/wp-content/uploads/2024/03/Carrot.js", body_required=true, update_interval=5
+script = http-response, "AppKineTesters", "https://api-account.kinemasters.com/v2/user/subscribe", "https://apptesters.org/wp-content/uploads/2024/03/KineMaster.js", body_required=true, update_interval=5
+script = http-request, "AppPicTesters", "https://api.picsart.com/gw-v2/shop/subscription/apple/purchases", "https://apptesters.org/wp-content/uploads/2024/03/PicsArt.js", body_required=true, update_interval=5
+script = http-response, "AppAMTesters", "https://us-central1-alight-creative.cloudfunctions.net/getAccountStatusAndLicenses", "https://apptesters.org/wp-content/uploads/2024/03/AlightMotion.js", body_required=true, update_interval=5
+script = http-response, "AppSaTesters", "api.sandbox.love/accounts/current", "https://apptesters.org/wp-content/uploads/2024/03/SandBox.js", body_required=true, update_interval=5
+script = http-response, "AppSSesters", "subscriptions.songshift.com/validate", "https://apptesters.org/wp-content/uploads/2024/03/SongShift.js", body_required=true, update_interval=5
+script = http-response, "AppADBTesters", "api.adblockpro.app/verify", "https://apptesters.org/wp-content/uploads/2024/04/AdblockPro.js", body_required=true, update_interval=5
+script = http-response, "AppADGTesters", "^https:\/\/mobile-api\.adguard\.org\/api\/.+\/ios_validate_receipt\/(.*?)", "https://apptesters.org/wp-content/uploads/2024/04/AdGuardPro.js", body_required=true, update_interval=5
+script = http-response, "AppDTesters", "ILoveDevTheDev.com", "https://URL2Script.com", body_required=true, update_interval=5
+
+
+[Rule]
+FINAL,DIRECT
+
+
